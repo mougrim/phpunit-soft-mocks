@@ -1,0 +1,23 @@
+language: php
+php:
+  - 5.5
+  - 5.6
+  - 7.0
+  - 7.1
+  - hhvm
+
+dist: trusty
+
+matrix:
+  fast_finish: true
+  allow_failures:
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - sh .travis.install.sh
+  - composer install
+
+script: bin/phpunit-soft-mocks --configuration phpunit.xml
