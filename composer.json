@@ -1,0 +1,49 @@
+{
+    "name": "mougrim/phpunit-soft-mocks",
+    "description": "Simple running phpunit with soft-mocks",
+    "type": "library",
+    "keywords": [
+        "phpunit",
+        "soft-mocks"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mougrim",
+            "email": "rinat@mougrim.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "phpunit/phpunit": "4.8.27-a+soft-mocks",
+        "phpunit/php-code-coverage": "2.2.4-a+soft-mocks",
+        "badoo/soft-mocks": "dev-master"
+    },
+    "require-dev": {
+        "phpro/grumphp": "^0",
+        "friendsofphp/php-cs-fixer": "^2"
+    },
+    "bin": [
+        "bin/phpunit-soft-mocks"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mougrim\\PhpunitSoftMocks\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mougrim\\PhpunitSoftMocks\\Example\\": "src-example"
+        }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/mougrim/phpunit.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/mougrim/php-code-coverage.git"
+        }
+    ]
+}

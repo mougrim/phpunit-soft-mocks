@@ -1,0 +1,51 @@
+#!/usr/bin/env php
+<?php
+/**
+ * this file is modified version of https://github.com/sebastianbergmann/phpunit/blob/4.8.27/phpunit
+ * with changes for use soft-mocks.
+ */
+use QA\SoftMocks;
+
+if (version_compare('5.3.3', PHP_VERSION, '>')) {
+    fwrite(
+        STDERR,
+        'This version of PHPUnit requires PHP 5.3.3; using the latest version of PHP is highly recommended.'.PHP_EOL
+    );
+
+    die(1);
+}
+
+if (!ini_get('date.timezone')) {
+    ini_set('date.timezone', 'UTC');
+}
+
+$composerInstall = '';
+foreach ([__DIR__.'/../../../autoload.php', __DIR__.'/../../vendor/autoload.php', __DIR__.'/../vendor/autoload.php'] as $file) {
+    if (file_exists($file)) {
+        $composerInstall = $file;
+
+        break;
+    }
+}
+unset($file);
+
+if (!$composerInstall) {
+    fwrite(STDERR,
+        'You need to set up the project dependencies using the following commands:'.PHP_EOL.
+        'wget http://getcomposer.org/composer.phar'.PHP_EOL.
+        'php composer.phar install'.PHP_EOL
+    );
+
+    die(1);
+}
+
+require_once dirname($composerInstall).'/badoo/soft-mocks/src/bootstrap.php';
+SoftMocks::setPhpunitPath('/vendor/phpunit/');
+require SoftMocks::rewrite($composerInstall);
+// inject soft-mocks into phpunit
+class_exists(PHPUnit_Util_Fileloader::class);
+SoftMocks::init();
+
+define('PHPUNIT_COMPOSER_INSTALL', SoftMocks::rewrite($composerInstall));
+unset($composerInstall);
+PHPUnit_TextUI_Command::main();
