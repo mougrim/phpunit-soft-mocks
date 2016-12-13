@@ -20,6 +20,7 @@
         "badoo/soft-mocks": "dev-master"
     },
     "require-dev": {
+        "codeclimate/php-test-reporter": "^0",
         "phpro/grumphp": "^0",
         "friendsofphp/php-cs-fixer": "^2"
     },

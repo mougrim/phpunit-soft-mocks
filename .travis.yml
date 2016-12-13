@@ -16,8 +16,15 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+addons:
+  code_climate:
+    repo_token: 64df43059a69c799df6f05537c27fd795968a4d6750a61437ae8cc32c36a8240
+
 before_script:
   - sh .travis.install.sh
   - composer install
 
-script: bin/phpunit-soft-mocks --configuration phpunit.xml
+script: if [ `./.travis.check-php-version-coverage.php` -eq "1" ]; then bin/phpunit-soft-mocks --configuration phpunit.xml --coverage-clover build/logs/clover.xml; else bin/phpunit-soft-mocks --configuration phpunit.xml; fi
+
+after_script:
+  - if [ `./.travis.check-php-version-coverage.php` -eq "1" ]; then vendor/bin/test-reporter; fi

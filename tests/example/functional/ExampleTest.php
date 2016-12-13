@@ -69,7 +69,7 @@ class ExampleTest extends TestCase
         static::assertSame(24, $example->factorial(4));
         $this->redefineMethod(
             [Example::class, 'factorial'],
-            function ($n) {
+            function ($number) {
                 return -1;
             }
         );
