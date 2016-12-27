@@ -70,7 +70,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param callable|array $classAndMethod [$class, $method]
+     * Only user-defined method redefinition is supported.
+     *
+     * @param callable|array $classAndMethod [$class, $method] $class - a class name or a trait name
      * @param callable $function
      */
     public function redefineMethod(array $classAndMethod, callable $function)
@@ -111,7 +113,7 @@ PHP;
     }
 
     /**
-     * @param callable|array $classAndMethod [$class, $method]
+     * @param callable|array $classAndMethod [$class, $method] $class - a class name or a trait name
      */
     public function restoreMethod(array $classAndMethod)
     {
