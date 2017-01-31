@@ -15,14 +15,17 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "phpunit/phpunit": "4.8.27-a+soft-mocks",
-        "phpunit/php-code-coverage": "2.2.4-a+soft-mocks",
+        "cweagans/composer-patches": "~1.0",
+        "phpunit/phpunit": "^5",
         "badoo/soft-mocks": "dev-master"
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "^0",
         "phpro/grumphp": "^0",
         "friendsofphp/php-cs-fixer": "^2"
+    },
+    "config": {
+        "preferred-install": "source"
     },
     "bin": [
         "bin/phpunit-soft-mocks"
@@ -37,14 +40,15 @@
             "Mougrim\\PhpunitSoftMocks\\Example\\": "src-example"
         }
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/mougrim/phpunit.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/mougrim/php-code-coverage.git"
+    "extra": {
+        "patches": {
+            "phpunit/phpunit": {
+                "Add ability to set custom filename rewrite callbacks #1": "https://github.com/mougrim/phpunit/commit/4b45a465a40ada11fea1ca6f031ac16ad51ad96a.patch",
+                "Add ability to set custom filename rewrite callbacks #2": "https://github.com/mougrim/phpunit/commit/1e8542af99bf3f638e321362075d66ed5167761d.patch"
+            },
+            "phpunit/php-code-coverage": {
+                "Add ability to set custom filename rewrite callbacks": "https://github.com/mougrim/php-code-coverage/commit/c93d854718927fa0d879d219ea9008ae91ce68b2.patch"
+            }
         }
-    ]
+    }
 }
