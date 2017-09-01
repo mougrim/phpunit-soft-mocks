@@ -2,6 +2,8 @@
     "name": "mougrim/phpunit-soft-mocks",
     "description": "Simple running phpunit with soft-mocks",
     "type": "library",
+    "minimum-stability": "beta",
+    "prefer-stable": true,
     "keywords": [
         "phpunit",
         "soft-mocks"
@@ -15,21 +17,17 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "cweagans/composer-patches": "~1.0",
-        "phpunit/phpunit": "^5",
-        "badoo/soft-mocks": "dev-master"
+        "vaimo/composer-patches": "3.4.3",
+        "phpunit/phpunit": "^4.0.0 || ^5.0.0",
+        "badoo/soft-mocks": "^1.1.0"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "^0",
         "phpro/grumphp": "^0",
         "friendsofphp/php-cs-fixer": "^2"
     },
     "config": {
         "preferred-install": "source"
     },
-    "bin": [
-        "bin/phpunit-soft-mocks"
-    ],
     "autoload": {
         "psr-4": {
             "Mougrim\\PhpunitSoftMocks\\": "src"
@@ -41,14 +39,6 @@
         }
     },
     "extra": {
-        "patches": {
-            "phpunit/phpunit": {
-                "Add ability to set custom filename rewrite callbacks #1": "https://github.com/mougrim/phpunit/commit/4b45a465a40ada11fea1ca6f031ac16ad51ad96a.patch",
-                "Add ability to set custom filename rewrite callbacks #2": "https://github.com/mougrim/phpunit/commit/1e8542af99bf3f638e321362075d66ed5167761d.patch"
-            },
-            "phpunit/php-code-coverage": {
-                "Add ability to set custom filename rewrite callbacks": "https://github.com/mougrim/php-code-coverage/commit/c93d854718927fa0d879d219ea9008ae91ce68b2.patch"
-            }
-        }
+        "enable-patching": true
     }
 }

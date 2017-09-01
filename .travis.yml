@@ -1,15 +1,32 @@
 language: php
+
+sudo: false
+
 php:
-  - 5.6
-  - 7.0
   - 7.1
+  - 7.0
+  - 5.6
+  - 5.5
   - hhvm
+  - 7.2
+
+env:
+  - PHPUNIT_VERSION=^5.7.0
+  - PHPUNIT_VERSION=^4.8.0
 
 dist: trusty
 
 matrix:
   fast_finish: true
   allow_failures:
+    - php: 7.2
+  exclude:
+      - php: 7.1
+        env: PHPUNIT_VERSION=^4.8.0
+      - php: 5.5
+        env: PHPUNIT_VERSION=^5.7.0
+      - php: 7.2
+        env: PHPUNIT_VERSION=^4.8.0
 
 cache:
   directories:
@@ -21,9 +38,10 @@ addons:
 
 before_script:
   - sh .travis.install.sh
+  - composer require --no-update "phpunit/phpunit":"${PHPUNIT_VERSION}"
   - composer install
 
-script: if [ `./.travis.check-php-version-coverage.php` -eq "1" ]; then bin/phpunit-soft-mocks --configuration phpunit.xml --coverage-clover build/logs/clover.xml; else bin/phpunit-soft-mocks --configuration phpunit.xml; fi
+script: if [ `./.travis.check-php-version-coverage.php` -eq "1" ]; then vendor/bin/phpunit --configuration phpunit.xml --verbose --colors --coverage-clover=coverage.clover; else vendor/bin/phpunit --configuration phpunit.xml --verbose --colors ; fi
 
 after_script:
-  - if [ `./.travis.check-php-version-coverage.php` -eq "1" ]; then vendor/bin/test-reporter; fi
+  - if [ `./.travis.check-php-version-coverage.php` -eq "1" ]; then wget https://scrutinizer-ci.com/ocular.phar; php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
