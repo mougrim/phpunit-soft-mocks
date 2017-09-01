@@ -6,7 +6,8 @@ PHPUnit-soft-mocks is library for simple running [PhpUnit](https://github.com/se
 [![Latest Unstable Version](https://poser.pugx.org/mougrim/phpunit-soft-mocks/v/unstable)](https://packagist.org/packages/mougrim/phpunit-soft-mocks)
 [![License](https://poser.pugx.org/mougrim/phpunit-soft-mocks/license)](https://packagist.org/packages/mougrim/phpunit-soft-mocks)
 [![Build Status](https://api.travis-ci.org/mougrim/phpunit-soft-mocks.png?branch=master)](https://travis-ci.org/mougrim/phpunit-soft-mocks)
-[![Test Coverage](https://codeclimate.com/github/mougrim/phpunit-soft-mocks/badges/coverage.svg)](https://codeclimate.com/github/mougrim/phpunit-soft-mocks/coverage)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mougrim/phpunit-soft-mocks/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mougrim/phpunit-soft-mocks/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/mougrim/phpunit-soft-mocks/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mougrim/phpunit-soft-mocks/?branch=master)
 
 ### Installation
 
