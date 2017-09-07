@@ -1,6 +1,6 @@
 ## PHPUnit soft mocks
 
-PHPUnit-soft-mocks is library for simple running [PhpUnit](https://github.com/sebastianbergmann/phpunit) with [Badoo soft-mocks](https://github.com/badoo/soft-mocks) using [Composer](https://getcomposer.org/). Also this library resolve soft-mocks coverage issues by require php-code-coverage with fixes. Also this library provide soft-mocks wrapper [\Mougrim\PhpunitSoftMocks\TestCase](src/TestCase.php).
+PHPUnit-soft-mocks is [Badoo soft-mocks](https://github.com/badoo/soft-mocks) wrapper for [PhpUnit](https://github.com/sebastianbergmann/phpunit). The wrapper is [\Mougrim\PhpunitSoftMocks\TestCase](src/TestCase.php).
 
 [![Latest Stable Version](https://poser.pugx.org/mougrim/phpunit-soft-mocks/version)](https://packagist.org/packages/mougrim/phpunit-soft-mocks)
 [![Latest Unstable Version](https://poser.pugx.org/mougrim/phpunit-soft-mocks/v/unstable)](https://packagist.org/packages/mougrim/phpunit-soft-mocks)
@@ -13,17 +13,22 @@ PHPUnit-soft-mocks is library for simple running [PhpUnit](https://github.com/se
 
 You can install PHPUnit-soft-mocks via [Composer](https://getcomposer.org/):
 
-```bash
-php composer.phar require --dev mougrim/phpunit-soft-mocks
-mkdir /tmp/mocks/ # create dir with soft-mocks cache
-```
+1. Add to composer.json (for patch phpunit packages):
+    ```json
+    {
+        "minimum-stability": "beta",
+        "prefer-stable": true,
+        "extra": {
+            "enable-patching": true
+        }
+    }
+    ```
+2. Run:
+    ```bash
+    composer require --dev mougrim/phpunit-soft-mocks
+    mkdir /tmp/mocks/ # create dir with soft-mocks cache
+    ```
 
 ### Using
-
-Instead using `bin/phpunit` you have to use `bin/phpunit-soft-mocks` for correct soft-mocks working:
-
-```bash
-bin/phpunit-soft-mocks --configuration phpunit.xml
-```
 
 For using soft-mocks wrapper you can extend [\Mougrim\PhpunitSoftMocks\TestCase](src/TestCase.php) class, see [example](tests/example/functional/ExampleTest.php).
