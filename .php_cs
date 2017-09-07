@@ -29,6 +29,5 @@ return Config::create()
     ->setFinder(
         Finder::create()
             ->in(__DIR__)
-            ->append([__DIR__ . '/bin/phpunit-soft-mocks'])
     )
 ;
