@@ -9,6 +9,8 @@ use QA\SoftMocks;
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
+    /** @var \ReflectionClass[] */
+    private $reflectionClasses = [];
     private $closuresClass;
 
     protected function tearDown()
@@ -74,18 +76,30 @@ class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @param callable|array $classAndMethod [$class, $method] $class - a class name or a trait name
      * @param callable $function
+     *
+     * @throws \ReflectionException
      */
     public function redefineMethod(array $classAndMethod, callable $function)
     {
         list($class, $name) = $classAndMethod;
+        if (!isset($this->reflectionClasses[$class])) {
+            $this->reflectionClasses[$class] = new \ReflectionClass($class);
+        }
+        $reflection = $this->reflectionClasses[$class];
+        $method = $reflection->getMethod($name);
         $closuresClass = $this->getClosuresClass();
         $closuresClass::${'closures'}[$class][$name] = $function;
+        $bindCode = "\$this, {$class}::class";
+        if ($method->isStatic()) {
+            $bindCode = "null, {$class}::class";
+        }
         $code = <<<PHP
 \$function = {$closuresClass}::\$closures['{$class}']['{$name}'];
 if (\$function instanceof \Closure) {
-    \$function = \$function->bindTo(\$this);
+    \$function = \$function->bindTo({$bindCode});
 }
 return call_user_func_array(\$function, \$params);
+
 PHP;
         SoftMocks::redefineMethod($class, $name, '', $code);
     }

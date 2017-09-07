@@ -81,6 +81,40 @@ class ExampleTest extends TestCase
         static::assertSame(24, $example->factorial(4));
     }
 
+    public function testSelfMethod()
+    {
+        static::assertSame(24, Example::selfFactorial(4));
+        $this->redefineMethod(
+            [Example::class, 'selfFactorial'],
+            function ($number) {
+                return -1;
+            }
+        );
+
+        static::assertSame(-1, Example::selfFactorial(4));
+        static::assertSame(-4, $this->callOriginal([Example::class, 'selfFactorial'], [4]));
+
+        $this->restoreMethod([Example::class, 'selfFactorial']);
+        static::assertSame(24, Example::selfFactorial(4));
+    }
+
+    public function testStaticMethod()
+    {
+        static::assertSame(24, Example::staticFactorial(4));
+        $this->redefineMethod(
+            [Example::class, 'staticFactorial'],
+            function ($number) {
+                return -1;
+            }
+        );
+
+        static::assertSame(-1, Example::staticFactorial(4));
+        static::assertSame(-4, $this->callOriginal([Example::class, 'staticFactorial'], [4]));
+
+        $this->restoreMethod([Example::class, 'staticFactorial']);
+        static::assertSame(24, Example::staticFactorial(4));
+    }
+
     public function testConstructor()
     {
         $test = $this;

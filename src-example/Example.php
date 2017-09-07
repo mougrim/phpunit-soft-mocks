@@ -31,4 +31,22 @@ class Example
     {
         return strlen('a');
     }
+
+    public static function selfFactorial($number)
+    {
+        if ($number <= 1) {
+            return 1;
+        }
+
+        return $number * self::selfFactorial($number - 1);
+    }
+
+    public static function staticFactorial($number)
+    {
+        if ($number <= 1) {
+            return 1;
+        }
+
+        return $number * self::staticFactorial($number - 1);
+    }
 }
