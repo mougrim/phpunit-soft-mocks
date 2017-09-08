@@ -2,7 +2,7 @@
 
 namespace Mougrim\PhpunitSoftMocks;
 
-use QA\SoftMocks;
+use Badoo\SoftMocks;
 
 /**
  * @author Mougrim <rinat@mougrim.ru>
