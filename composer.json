@@ -2,8 +2,6 @@
     "name": "mougrim/phpunit-soft-mocks",
     "description": "Simple running phpunit with soft-mocks",
     "type": "library",
-    "minimum-stability": "beta",
-    "prefer-stable": true,
     "keywords": [
         "phpunit",
         "soft-mocks"
@@ -19,11 +17,11 @@
         "php": ">=5.5.0",
         "vaimo/composer-patches": "3.4.3",
         "phpunit/phpunit": "^4.0.0 || ^5.0.0",
-        "badoo/soft-mocks": "^1.1.0"
+        "badoo/soft-mocks": "^1.3.0"
     },
     "require-dev": {
-        "phpro/grumphp": "^0",
-        "friendsofphp/php-cs-fixer": "^2"
+        "phpro/grumphp": "^0.12.0",
+        "friendsofphp/php-cs-fixer": "^2.7.1"
     },
     "config": {
         "preferred-install": "source"

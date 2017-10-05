@@ -16,8 +16,6 @@ You can install PHPUnit-soft-mocks via [Composer](https://getcomposer.org/):
 1. Add to composer.json (for patch phpunit packages):
     ```json
     {
-        "minimum-stability": "beta",
-        "prefer-stable": true,
         "extra": {
             "enable-patching": true
         }
