@@ -1,3 +1,7 @@
+## The repository is archived
+
+This repository has been archived. If you want to maintain it - just fork.
+
 ## PHPUnit soft mocks
 
 PHPUnit-soft-mocks is [Badoo soft-mocks](https://github.com/badoo/soft-mocks) wrapper for [PhpUnit](https://github.com/sebastianbergmann/phpunit). The wrapper is [\Mougrim\PhpunitSoftMocks\TestCase](src/TestCase.php).
